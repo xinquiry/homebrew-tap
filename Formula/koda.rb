@@ -1,29 +1,31 @@
 class Koda < Formula
   desc "Koda command-line coding-agent runtime."
   homepage "https://github.com/xinquiry/koda-releases"
-  version "0.1.0"
-  if OS.mac?
+  version "0.1.1"
+  if OS.mac? && Hardware::CPU.arm?
+    url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.1/koda-aarch64-apple-darwin.tar.xz"
+    sha256 "1553df8d58fc27d6f0ea089c794a422df11d257ba44ea0c10b543270e0455f37"
+  end
+  if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.0/koda-aarch64-apple-darwin.tar.xz"
-      sha256 "88b13bed14da7fa708785aa611092a490e3d42d24758e24d03eeaecec3c32336"
+      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.1/koda-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "3beb4b6c901c545b97c073ddee4e02f8fc6a425bdd27e5a77bfd061b67c051a1"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.0/koda-x86_64-apple-darwin.tar.xz"
-      sha256 "9bf6c3a25630178980115666441e895f6df847197b043decbab01992e57e8aa7"
+      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.1/koda-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "8a0578940496accfa8776c0dbf1b8da7e96f3f011fd212ae84561d5195127307"
     end
-  end
-  if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.0/koda-x86_64-unknown-linux-musl.tar.xz"
-    sha256 "305819099f3622397034d15024817f6c2c14eeb99ec9712cd8272ab274f04f39"
   end
   license any_of: ["MIT", "Apache-2.0"]
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin":              {},
-    "x86_64-apple-darwin":               {},
-    "x86_64-unknown-linux-gnu":          {},
-    "x86_64-unknown-linux-musl-dynamic": {},
-    "x86_64-unknown-linux-musl-static":  {},
+    "aarch64-apple-darwin":               {},
+    "aarch64-unknown-linux-gnu":          {},
+    "aarch64-unknown-linux-musl-dynamic": {},
+    "aarch64-unknown-linux-musl-static":  {},
+    "x86_64-unknown-linux-gnu":           {},
+    "x86_64-unknown-linux-musl-dynamic":  {},
+    "x86_64-unknown-linux-musl-static":   {},
   }.freeze
 
   def target_triple
@@ -43,7 +45,7 @@ class Koda < Formula
 
   def install
     bin.install "koda" if OS.mac? && Hardware::CPU.arm?
-    bin.install "koda" if OS.mac? && Hardware::CPU.intel?
+    bin.install "koda" if OS.linux? && Hardware::CPU.arm?
     bin.install "koda" if OS.linux? && Hardware::CPU.intel?
 
     install_binary_aliases!
