@@ -1,19 +1,19 @@
 class Koda < Formula
   desc "Koda command-line coding-agent runtime."
   homepage "https://github.com/xinquiry/koda-releases"
-  version "0.1.17"
+  version "0.1.18"
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.17/koda-aarch64-apple-darwin.tar.xz"
-    sha256 "41415ccb186661614f96341921ad87dccabed6e7b2e30f6d3215924bd9125572"
+    url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.18/koda-aarch64-apple-darwin.tar.xz"
+    sha256 "ae8d0c5536f6be51fbf850e4ac189794af633a86f63b2d261f88b107ca4141a2"
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.17/koda-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "ea4860cd3d71161b3b4feb59d19c40bbf97d56b8d0edb117a97ae446c4ca2204"
+      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.18/koda-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "c3946c6be1758545b547aa2520841dfcca8b5489d3cdbcbfd441f80115b8fd09"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.17/koda-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "5969fe6380577ed83e1750a4216f5126c6615a200c90c898bfe0bedf304d9546"
+      url "https://github.com/xinquiry/koda-releases/releases/download/v0.1.18/koda-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "8589d3a1c34826163fb12daf86171d091973b0043f063139eb2189ddb61fcf15"
     end
   end
 
